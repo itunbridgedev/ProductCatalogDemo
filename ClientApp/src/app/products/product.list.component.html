@@ -1,0 +1,20 @@
+<h1>Available Products</h1>
+
+<table *ngIf="toggleProductList" class="card-body table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Qty Available</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of _products">
+            <th scope="row">{{ product.name }}</th>
+            <th scope="row">{{ product.description }}</th>
+            <td>{{ product.quantity }}</td>
+        </tr>
+    </tbody>
+</table>
+test:{{toggleProductList}}
+<div *ngIf="!toggleProductList">No Products found</div>
