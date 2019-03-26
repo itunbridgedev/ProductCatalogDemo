@@ -9,6 +9,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ProductDataService } from './services/product-service'
 import { ProductListComponent } from './products/product.list.component';
+import { ProductDetailComponent } from './products/product.detail.component';
+import { ProductCreateComponent } from './products/product.create.component';
 import { Configuration } from './shared/app.config';
 
 @NgModule({
@@ -16,7 +18,9 @@ import { Configuration } from './shared/app.config';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductDetailComponent,
+    ProductCreateComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -25,6 +29,8 @@ import { Configuration } from './shared/app.config';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'products', component: ProductListComponent },
+      { path: 'products/details/:id', component: ProductDetailComponent },
+      { path: 'products/new', component: ProductCreateComponent }
     ])
   ],
   providers: [ ProductDataService, Configuration ],

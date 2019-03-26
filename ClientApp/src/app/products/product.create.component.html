@@ -1,0 +1,16 @@
+<div>
+    <div>
+        <label>name:</label>
+        <input #productName />
+    </div>    
+    <div>
+        <label>description:</label>
+        <input #description />
+    </div>    
+    <div>
+        <label>quantity available:</label>
+        <input #quantity />
+    </div>
+    <button (click)="addProduct(productName.value, description.value, quantity.value)">Add</button>
+</div>
+<button (click)="goBack()">go back</button>

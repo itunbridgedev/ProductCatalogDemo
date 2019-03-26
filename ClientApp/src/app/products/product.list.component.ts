@@ -23,13 +23,11 @@ export class ProductListComponent {
   buildProductList() {
     this._productDataService.getProducts()
       .subscribe(
-        results => {
+        (results: any[]) => {
           console.log('**Result' + JSON.stringify(results))
-          // Handle results
-
-          if (results == undefined || results != []) {
+          if (results == undefined || results.length == 0) {
             this.toggleProductList = false;
-            results = 'No Products Found';
+            return;
           };
           this.toggleProductList = true;
           this._products = results;
