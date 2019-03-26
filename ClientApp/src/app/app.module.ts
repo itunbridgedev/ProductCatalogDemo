@@ -29,8 +29,9 @@ import { Configuration } from './shared/app.config';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'products', component: ProductListComponent },
-      { path: 'products/details/:id', component: ProductDetailComponent },
-      { path: 'products/new', component: ProductCreateComponent }
+      { path: 'products/new', component: ProductCreateComponent },
+      { path: 'products/:id', component: ProductDetailComponent }
+      
     ])
   ],
   providers: [ ProductDataService, Configuration ],

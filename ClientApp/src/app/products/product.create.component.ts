@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
   templateUrl: './product.create.component.html',
 })
 export class ProductCreateComponent {
+  public errorMessage: string = "";
 
   constructor(
     private router: Router,
@@ -34,7 +35,7 @@ export class ProductCreateComponent {
         this.router.navigateByUrl('/products');
       },
         error => {
-          console.log("***ERROR: " + error);
+          this.errorMessage = error;
         }
       );
   };

@@ -1,11 +1,10 @@
 <h1>Available Products</h1>
 
-<div *ngIf="toggleProductList" class="card">
+<div *ngIf="products?.length" class="card">
     <div class="card-header">
         <small>click name for details</small>
     </div>
-    <ul class="list-group list-group-flush" 
-        *ngFor="let product of _products">
+    <ul class="list-group list-group-flush" *ngFor="let product of products">
         <li class="list-group-item">
             <a routerLink="{{product.id}}">
                 {{ product.name }}
@@ -13,4 +12,8 @@
         </li>
     </ul>
 </div>
-<div *ngIf="!toggleProductList">No Products found</div>
+<div *ngIf="!products?.length">No Products found</div>
+
+<div *ngIf='errorMessage' class='alert alert-danger'>
+    Error: {{ errorMessage }}
+</div>

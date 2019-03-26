@@ -23,7 +23,7 @@ export class ProductDetailComponent {
 
   getProductDetail(): void {
     const id = + this.route.snapshot.paramMap.get('id');
-    this._productDataService.getProductByProductId(id)
+    this._productDataService.getProduct(id)
       .subscribe((product: Product) => { 
         this.product = product; 
       },

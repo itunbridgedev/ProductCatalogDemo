@@ -4,8 +4,7 @@ namespace ProductCatalogDemo.Products.Commands
 {
     public class CreateProductModel
     {
-        [MaxLength(5)]
-        public string ProductId { get; set; }
+        public int ProductId { get; set; }
 
         [Required]
         [MaxLength(100)]

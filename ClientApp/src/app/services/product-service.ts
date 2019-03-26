@@ -14,21 +14,42 @@ export class ProductDataService {
     constructor(private http: HttpClient, private _configuration: Configuration) { }    
 
     private url = this._configuration.webAPIServerUrl;
+    private products: Product[];
 
-     // Get All Products
-    public getProducts() {     
-        return this.http.get(this.url + '/products');
+    public getProducts() {
+        if (this.products) {
+            return of(this.products);
+        }     
+        return this.http.get<Product[]>(this.url + '/products')
+            .pipe(
+                tap(data => this.products = data),
+                catchError(this.handleError<Product[]>('getProducts'))
+            );
     };
 
-    // Get Products By Product Id
-    public getProductByProductId(_ProductId: any) {     
-        return this.http.get(this.url + '/products/' + _ProductId);
+    public getProduct(id: any) { 
+        if (this.products) {
+            const foundItem = this.products.find(item => item.ProductId === id);
+            if (foundItem) {
+                return of(foundItem);
+            }
+        }
+        return this.http.get(`${this.url}'/products/{id}`)
+            .pipe(
+                tap(data => console.log('Data:' + JSON.stringify(data))),
+                catchError(this.handleError<Product>('getProduct(id)'))
+            );
     };
 
     public addProduct(product: Product): Observable<Product>{
-        return this.http.post<Product>(this.url + '/products', product).pipe(
-            tap((newProduct: Product) => console.log(`added product w/ id=${newProduct.ProductId}`)),
-            catchError(this.handleError<Product>('addProduct'))
+        return this.http.post<Product>(this.url + '/products', product)
+            .pipe(
+                tap((newProduct: Product) => console.log(`added product w/ id=${newProduct.ProductId}`)),
+                tap(data => {
+                    this.products.push(data);
+                }),
+                catchError(this.handleError<Product>('addProduct')
+            )
         );
     }
 

@@ -2,11 +2,11 @@
     <div>
         <label>name:</label>
         <input #productName />
-    </div>    
+    </div>
     <div>
         <label>description:</label>
         <input #description />
-    </div>    
+    </div>
     <div>
         <label>quantity available:</label>
         <input #quantity />
@@ -14,3 +14,7 @@
     <button (click)="addProduct(productName.value, description.value, quantity.value)">Add</button>
 </div>
 <button (click)="goBack()">go back</button>
+
+<div *ngIf='errorMessage' class='alert alert-danger'>
+    Error: {{ errorMessage }}
+</div>

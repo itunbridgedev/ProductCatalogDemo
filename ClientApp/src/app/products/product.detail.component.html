@@ -2,20 +2,24 @@
     <h2>{{product.name}} Details</h2>
     <div>
         <label>id:</label>
-        <span>{{product.id}}</span>        
+        <span>{{product.id}}</span>
     </div>
     <div>
         <label>name:</label>
         <span>{{product.name}}</span>
-    </div>    
+    </div>
     <div>
         <label>description:</label>
         <span>{{product.description}}</span>
-    </div>    
+    </div>
     <div>
         <label>quantity available:</label>
         <span>{{product.quantity}}</span>
-    </div>    
+    </div>
 </div>
 <div *ngIf="!product">Could not find product</div>
 <button (click)="goBack()">go back</button>
+
+<div *ngIf='errorMessage' class='alert alert-danger'>
+    Error: {{ errorMessage }}
+</div>

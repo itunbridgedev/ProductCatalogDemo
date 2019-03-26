@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class ProductListComponent {
 
-  public _products: any;
-  public toggleProductList = false;
+  public products: Product[];
+  public errorMessage: string;
 
   constructor(private router: Router, private _productDataService: ProductDataService) {
 
@@ -23,17 +23,11 @@ export class ProductListComponent {
   buildProductList() {
     this._productDataService.getProducts()
       .subscribe(
-        (results: any[]) => {
-          console.log('**Result' + JSON.stringify(results))
-          if (results == undefined || results.length == 0) {
-            this.toggleProductList = false;
-            return;
-          };
-          this.toggleProductList = true;
-          this._products = results;
+        (products: Product[]) => {
+          this.products = products;
         },
-        error => {
-          console.log("***ERROR: " + error);
+        (error: any) => {
+          this.errorMessage = <any>error;
         }
       );
   };

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProductCatalogDemo.Products.Queries;
 using ProductCatalogDemo.Products.Commands;
+using ProductCatalogDemo.Filters;
 
 namespace ProductCatalogDemo {
     [Produces("application/json")]
@@ -53,7 +54,8 @@ namespace ProductCatalogDemo {
         // POST: api/Products
         [HttpPost]
         [ProducesResponseType(typeof(IDictionary<string, string>), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(CreateProductModel), (int)HttpStatusCode.Created)]        
+        [ProducesResponseType(typeof(CreateProductModel), (int)HttpStatusCode.Created)]
+        [ValidateProductNameUnique]
         public async Task<IActionResult> PostProduct([FromBody] CreateProductModel product)
         {
             if (!ModelState.IsValid)
